@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Text, View, StatusBar, FlatList, StyleSheet } from "react-native";
 import kurals from "../kurals";
 
-const KuralsList = ({}) => {
+interface KuralsList {
+  paal: string;
+}
+
+const KuralsList: React.FC<KuralsList> = ({ paal }) => {
   const [aramDetails, setaramDetails] = useState<any[]>([]);
+  const [porulDetails, setporulDetails] = useState<any[]>([]);
+  const [kaamamDetails, setkaamamDetails] = useState<any[]>([]);
   // const [kurals, setkurals] = useState<any[]>([]);
   const [error, seterror] = useState("");
 
@@ -22,6 +28,8 @@ const KuralsList = ({}) => {
       const jsonData = await response.json();
       // console.log(jsonData[0].section.detail[0].chapterGroup.detail);
       setaramDetails(jsonData[0].section.detail[0].chapterGroup.detail);
+      setporulDetails(jsonData[0].section.detail[1].chapterGroup.detail);
+      setkaamamDetails(jsonData[0].section.detail[2].chapterGroup.detail);
       seterror("");
       return;
     } else {
@@ -37,7 +45,13 @@ const KuralsList = ({}) => {
     <View style={styles.main}>
       <StatusBar />
       <FlatList
-        data={aramDetails}
+        data={
+          paal == "aram"
+            ? aramDetails
+            : paal == "porul"
+            ? porulDetails
+            : kaamamDetails
+        }
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
           <View>

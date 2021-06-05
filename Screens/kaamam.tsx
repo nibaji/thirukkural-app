@@ -1,11 +1,6 @@
 import React from "react";
-import { View, Text, StatusBar } from "react-native";
+import KuralsList from "../Components/kurals";
 
 export default function kaamam() {
-  return (
-    <View>
-      <StatusBar />
-      <Text>Kaamathuppaal</Text>
-    </View>
-  );
+  return <KuralsList paal="kaamam" />;
 }
