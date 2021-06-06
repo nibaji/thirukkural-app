@@ -27,6 +27,7 @@ function TopTabs() {
         activeTintColor: AppColor.accent,
         style: { backgroundColor: AppColor.primary },
         showIcon: true,
+        indicatorStyle: { backgroundColor: AppColor.accent },
       }}
     >
       <TopTab.Screen
