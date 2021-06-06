@@ -7,10 +7,14 @@ import aram from "../Screens/aram";
 import porul from "../Screens/porul";
 import kaamam from "../Screens/kaamam";
 import AppColor from "../Theme/colors";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function TopTabbedNavigation() {
   return (
     <NavigationContainer>
+      <View style={styles.main}>
+        <Text style={styles.titleText}>திருக்குறள்</Text>
+      </View>
       <TopTabs />
     </NavigationContainer>
   );
@@ -61,3 +65,20 @@ function TopTabs() {
     </TopTab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  main: {
+    flexDirection: "row",
+    backgroundColor: AppColor.primary,
+    padding: 5,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  titleText: {
+    padding: 5,
+    textAlign: "left",
+    fontWeight: "bold",
+    fontSize: 23,
+    color: AppColor.accent,
+  },
+});

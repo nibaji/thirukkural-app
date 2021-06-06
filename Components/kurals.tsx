@@ -15,7 +15,7 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
 
   useEffect(() => {
     fetchDetails();
-  });
+  }, [aramDetails, porulDetails, kaamamDetails]);
 
   async function fetchDetails() {
     const url =
