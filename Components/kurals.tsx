@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StatusBar, FlatList, StyleSheet } from "react-native";
 import kurals from "../kurals";
+import AppColor from "../Theme/colors";
 
 interface KuralsList {
   paal: string;
@@ -54,16 +55,16 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
         }
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
-          <View>
-            <Text style={styles.chapterGroup}>{item.name}</Text>
+          <View style={styles.chapterGroups}>
+            <Text style={styles.chapterGroupText}>{item.name}</Text>
             <FlatList
               data={item.chapters.detail}
               keyExtractor={(item) => item.name}
               renderItem={({ item }) => {
                 //console.log(item.start);
                 return (
-                  <View>
-                    <Text style={styles.chapter}>{item.name}</Text>
+                  <View style={styles.chapters}>
+                    <Text style={styles.chapterText}>{item.name}</Text>
                     <FlatList
                       data={kurals.kural.filter(
                         (element: { Number: number }) => {
@@ -76,8 +77,8 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
                       keyExtractor={(item) => item.Line1}
                       renderItem={({ item }) => (
                         <View style={styles.kuralView}>
-                          <Text>{item.Line1}</Text>
-                          <Text>{item.Line2}</Text>
+                          <Text style={styles.kuralText}>{item.Line1}</Text>
+                          <Text style={styles.kuralText}>{item.Line2}</Text>
                         </View>
                       )}
                       showsVerticalScrollIndicator={false}
@@ -96,23 +97,47 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
 };
 
 const styles = StyleSheet.create({
-  main: { flex: 1, padding: 5 },
-  chapterGroup: {
+  main: { flex: 1, padding: 5, backgroundColor: AppColor.primary },
+  chapterGroups: {
+    paddingHorizontal: 0,
+    paddingVertical: 5,
+    margin: 5,
+    backgroundColor: AppColor.accent,
+    borderColor: AppColor.accent,
+    borderWidth: 1,
+    borderRadius: 9,
+  },
+  chapterGroupText: {
     padding: 5,
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 18,
     color: "black",
   },
-  chapter: {
+  chapters: {
+    padding: 5,
+    margin: 5,
+    backgroundColor: AppColor.primary,
+    borderColor: AppColor.primary,
+    borderWidth: 1,
+    borderRadius: 9,
+  },
+  chapterText: {
     padding: 8,
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 14,
-    color: "black",
+    color: AppColor.accent,
   },
   kuralView: {
     padding: 5,
+    margin: 5,
+    borderColor: "grey",
+    borderBottomWidth: 1,
+  },
+  kuralText: {
+    padding: 5,
+    color: AppColor.accent,
   },
 });
 
