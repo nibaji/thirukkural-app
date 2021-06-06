@@ -1,4 +1,4 @@
-const kurals: any = {
+const kuralsList: any = {
   kural: [
     {
       Number: 1,
@@ -21149,4 +21149,4 @@ const kurals: any = {
   repo: "http://github.com/tk120404/thirukkural",
 };
 
-export default kurals;
+export default kuralsList;

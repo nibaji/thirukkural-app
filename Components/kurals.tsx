@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Text, View, StatusBar, FlatList, StyleSheet } from "react-native";
-import kurals from "../kurals";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchKuralDetails } from "../Redux/kuralData";
+import kuralsList from "../Data/kurals";
 import AppColor from "../Theme/colors";
 
 interface KuralsList {
@@ -8,36 +10,21 @@ interface KuralsList {
 }
 
 const KuralsList: React.FC<KuralsList> = ({ paal }) => {
-  const [aramDetails, setaramDetails] = useState<any[]>([]);
-  const [porulDetails, setporulDetails] = useState<any[]>([]);
-  const [kaamamDetails, setkaamamDetails] = useState<any[]>([]);
-  // const [kurals, setkurals] = useState<any[]>([]);
-  const [error, seterror] = useState("");
+  const aramDetails = useSelector(
+    (state: any) => state.kuralDetails.aramDetails
+  );
+  const porulDetails = useSelector(
+    (state: any) => state.kuralDetails.porulDetails
+  );
+  const kaamamDetails = useSelector(
+    (state: any) => state.kuralDetails.kaamamDetails
+  );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchDetails();
-  }, [aramDetails, porulDetails, kaamamDetails]);
-
-  async function fetchDetails() {
-    const url =
-      "https://raw.githubusercontent.com/nibaji/thirukkural/master/detail.json";
-
-    const response = await fetch(url);
-    // console.log(response.ok);
-
-    if (response.ok) {
-      const jsonData = await response.json();
-      // console.log(jsonData[0].section.detail[0].chapterGroup.detail);
-      setaramDetails(jsonData[0].section.detail[0].chapterGroup.detail);
-      setporulDetails(jsonData[0].section.detail[1].chapterGroup.detail);
-      setkaamamDetails(jsonData[0].section.detail[2].chapterGroup.detail);
-      seterror("");
-      return;
-    } else {
-      seterror("Error");
-      return;
-    }
-  }
+    dispatch(fetchKuralDetails());
+  }, [dispatch]);
 
   return (
     // CHAPTER GROUP - Titles - <FlatList>
@@ -66,7 +53,7 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
                   <View style={styles.chapters}>
                     <Text style={styles.chapterText}>{item.name}</Text>
                     <FlatList
-                      data={kurals.kural.filter(
+                      data={kuralsList.kural.filter(
                         (element: { Number: number }) => {
                           return (
                             element.Number >= item.start &&
