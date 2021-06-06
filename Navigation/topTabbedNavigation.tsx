@@ -1,4 +1,5 @@
 import React from "react";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { FontAwesome, Ionicons, Octicons } from "@expo/vector-icons";
@@ -7,24 +8,27 @@ import porul from "../Screens/porul";
 import kaamam from "../Screens/kaamam";
 import AppColor from "../Theme/colors";
 
-export default function BottomTabbedNavigation() {
+export default function TopTabbedNavigation() {
   return (
     <NavigationContainer>
-      <BottomTabs />
+      <TopTabs />
     </NavigationContainer>
   );
 }
 
-const BottomTab = createMaterialBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
-function BottomTabs() {
+function TopTabs() {
   return (
-    <BottomTab.Navigator
+    <TopTab.Navigator
       initialRouteName="Arathuppaal"
-      activeColor={AppColor.accent}
-      barStyle={{ backgroundColor: AppColor.primary }}
+      tabBarOptions={{
+        activeTintColor: AppColor.accent,
+        style: { backgroundColor: AppColor.primary },
+        showIcon: true,
+      }}
     >
-      <BottomTab.Screen
+      <TopTab.Screen
         name="Arathuppaal"
         component={aram}
         options={{
@@ -34,7 +38,7 @@ function BottomTabs() {
           ),
         }}
       />
-      <BottomTab.Screen
+      <TopTab.Screen
         name="Porutpaal"
         component={porul}
         options={{
@@ -44,7 +48,7 @@ function BottomTabs() {
           ),
         }}
       />
-      <BottomTab.Screen
+      <TopTab.Screen
         name="Kaamathuppaal"
         component={kaamam}
         options={{
@@ -54,6 +58,6 @@ function BottomTabs() {
           ),
         }}
       />
-    </BottomTab.Navigator>
+    </TopTab.Navigator>
   );
 }

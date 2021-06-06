@@ -1,7 +1,7 @@
 import React from "react";
 
-import BottomTabbedNavigation from "./Navigation/bottomTabbedNavigation";
+import TopTabbedNavigation from "./Navigation/topTabbedNavigation";
 
 export default function App() {
-  return <BottomTabbedNavigation />;
+  return <TopTabbedNavigation />;
 }
