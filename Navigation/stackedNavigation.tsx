@@ -4,6 +4,7 @@ import TopTabbedNavigation from "./topTabbedNavigation";
 import KuralDetails from "../Screens/kuralDetails";
 import { NavigationContainer } from "@react-navigation/native";
 import AppBar from "../Components/appBar";
+import AppColor from "../Theme/colors";
 
 export default function StackedNavigation() {
   return (
@@ -27,7 +28,12 @@ function Stacks() {
       <Stack.Screen
         name="Kural"
         component={KuralDetails}
-        options={({ route }: any) => ({ title: route.params.title })}
+        options={({ route }: any) => ({
+          title: route.params.title,
+          headerTitleStyle: { color: AppColor.accent },
+          headerStyle: { backgroundColor: AppColor.primary },
+          headerTintColor: AppColor.accent,
+        })}
       />
     </Stack.Navigator>
   );
