@@ -6,6 +6,7 @@ import {
   Text,
   TouchableHighlight,
   View,
+  Image,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { changeAppInfoVisibility } from "../Redux/appInfo";
@@ -30,6 +31,18 @@ const AppInfo = () => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>திருக்குறள்</Text>
+
+          <Image
+            source={require("../assets/adaptive-icon.png")}
+            style={{
+              width: 150,
+              height: 150,
+            }}
+          />
+          <Text>
+            The Tirukkuṛaḷ is a classic Tamil sangam literature consisting of
+            1330 couplets or Kurals. It was authored by Thiruvalluvar.
+          </Text>
 
           <TouchableHighlight
             style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
