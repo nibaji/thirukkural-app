@@ -7,9 +7,12 @@ import {
   TouchableHighlight,
   View,
   Image,
+  TouchableOpacity,
 } from "react-native";
+import * as Linking from "expo-linking";
 import { useSelector, useDispatch } from "react-redux";
 import { changeAppInfoVisibility } from "../Redux/appInfo";
+import AppColor from "../Theme/colors";
 
 const AppInfo = () => {
   const dispatch = useDispatch();
@@ -31,7 +34,6 @@ const AppInfo = () => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>திருக்குறள்</Text>
-
           <Image
             source={require("../assets/adaptive-icon.png")}
             style={{
@@ -44,8 +46,37 @@ const AppInfo = () => {
             1330 couplets or Kurals. It was authored by Thiruvalluvar.
           </Text>
 
+          <Text style={styles.creditsTitleText}>Credits</Text>
+          <View style={styles.creditSectionView}>
+            <Text style={styles.creditsText}>
+              Huge Thanks to Arjunkumar, who made this huge data available in
+              his github for easy access.
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() =>
+              Linking.openURL(`https:github.com/tk120404/thirukkural`)
+            }
+          >
+            <Text style={styles.linktext}>THIRUKKURAL REPO</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.creditsTitleText}>App Author</Text>
+          <TouchableOpacity onPress={() => Linking.openURL(`https:nibaji.xyz`)}>
+            <Text style={styles.linktext}>Nidhun Balaji T R (nibaji)</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.creditsTitleText}>App Source</Text>
+          <TouchableOpacity
+            onPress={() =>
+              Linking.openURL(`https:github.com/nibaji/thirukkural-react`)
+            }
+          >
+            <Text style={styles.linktext}>GIT</Text>
+          </TouchableOpacity>
+
           <TouchableHighlight
-            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+            style={styles.openButton}
             onPress={() => {
               dispatch(changeAppInfoVisibility());
               //console.log(showInfo);
@@ -82,9 +113,10 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   openButton: {
-    backgroundColor: "#F194FF",
+    backgroundColor: AppColor.primary,
     borderRadius: 20,
     padding: 10,
+    marginTop: 9,
     elevation: 2,
   },
   textStyle: {
@@ -96,6 +128,28 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     fontWeight: "bold",
+  },
+  creditsTitleText: {
+    margin: 5,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  creditsText: {
+    textAlign: "justify",
+    fontStyle: "italic",
+  },
+  linktext: {
+    marginBottom: 5,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: AppColor.primary,
+  },
+  creditRowView: {
+    flexDirection: "row",
+  },
+  creditSectionView: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
