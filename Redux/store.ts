@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import AppInfoVisibility from "./appInfo";
 import kuralData from "./kuralData";
 
 const store = configureStore({
   reducer: {
     kuralDetails: kuralData,
+    appInfoVisibility: AppInfoVisibility,
   },
 });
 
