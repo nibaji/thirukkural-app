@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { Text, View, StatusBar, FlatList, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  StatusBar,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchKuralDetails } from "../Redux/kuralData";
 import kuralsList from "../Data/kurals";
@@ -25,6 +33,8 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
   useEffect(() => {
     dispatch(fetchKuralDetails());
   }, [dispatch]);
+
+  const navigation = useNavigation();
 
   return (
     // CHAPTER GROUP - Titles - <FlatList>
@@ -63,10 +73,16 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
                       )}
                       keyExtractor={(item) => item.Line1}
                       renderItem={({ item }) => (
-                        <View style={styles.kuralView}>
-                          <Text style={styles.kuralText}>{item.Line1}</Text>
-                          <Text style={styles.kuralText}>{item.Line2}</Text>
-                        </View>
+                        <TouchableOpacity
+                          onPress={() => {
+                            navigation.navigate("Kural");
+                          }}
+                        >
+                          <View style={styles.kuralView}>
+                            <Text style={styles.kuralText}>{item.Line1}</Text>
+                            <Text style={styles.kuralText}>{item.Line2}</Text>
+                          </View>
+                        </TouchableOpacity>
                       )}
                       showsVerticalScrollIndicator={false}
                     />

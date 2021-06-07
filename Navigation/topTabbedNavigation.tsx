@@ -6,15 +6,9 @@ import aram from "../Screens/aram";
 import porul from "../Screens/porul";
 import kaamam from "../Screens/kaamam";
 import AppColor from "../Theme/colors";
-import AppBar from "../Components/appBar";
 
 export default function TopTabbedNavigation() {
-  return (
-    <NavigationContainer>
-      <AppBar />
-      <TopTabs />
-    </NavigationContainer>
-  );
+  return <TopTabs />;
 }
 
 const TopTab = createMaterialTopTabNavigator();
