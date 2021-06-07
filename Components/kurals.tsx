@@ -75,7 +75,10 @@ const KuralsList: React.FC<KuralsList> = ({ paal }) => {
                       renderItem={({ item }) => (
                         <TouchableOpacity
                           onPress={() => {
-                            navigation.navigate("Kural", { kural: item });
+                            navigation.navigate("Kural", {
+                              kural: item,
+                              title: `குறள் எண்: ${item.Number}`,
+                            });
                           }}
                         >
                           <View style={styles.kuralView}>

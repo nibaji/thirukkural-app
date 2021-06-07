@@ -24,7 +24,11 @@ function Stacks() {
         component={TopTabbedNavigation}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Kural" component={KuralDetails} />
+      <Stack.Screen
+        name="Kural"
+        component={KuralDetails}
+        options={({ route }: any) => ({ title: route.params.title })}
+      />
     </Stack.Navigator>
   );
 }
